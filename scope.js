@@ -53,3 +53,15 @@ let fn;
 const hong = fn();
 hong.age = '30';
 console.log(hong);
+
+console.log('------------------------');
+
+
+let nan = NaN;
+
+const a = nan && nan.hasOwnProperty();
+const b = nan??hasOwnProperty();
+
+console.log(a);
+console.log(b);
+
