@@ -32,6 +32,3 @@ console.log(u.toString());
 r = x + '30'; // 병합 연산자
 q = x * '30'; // 산술 연산자
 console.log(r, typeof r, q, typeof q);
-
-const infi = Number.isNaN(Infinity)
-console.log(infi);
