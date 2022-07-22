@@ -88,9 +88,9 @@
     })();
     
     
-    // 5. caller (caller를 쓰는 경우는 실무에서는 드뭄)
+    // 5. caller (caller를 쓰는 경우는 실무에서는 적음)
     const getNextWeek5 = (function(){
-      const idxObj = {}; // {국어 : }
+      const idxObj = {}; // {국어 : -1, 수학 : 0 ...}
     
       return function wn() {
         const sbj = wn.caller.name;
