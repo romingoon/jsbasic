@@ -1,13 +1,14 @@
 
-const sum = (arr, cb, iv = 0) => {
-    const sum = 0;
+const sum = (arr, func, iv) => {
+    let total = iv ? iv : arr[0]
 
-    for(let i = 0; i<arr.length; i+=1){
-        sum += arr[i];
+    for(let [idx, el] of arr.entries()){
+        if(idx !== arr.length-1)
+        total = func(total, arr[idx + 1]) ;
     }
-    return sum;
+    return total;
 };
 
-console.log(([1,2,3], sum(), arr[0]));
-
+const a = [1, 2, 3];
+console.log(sum(a, (acc, crr) => acc + crr));
 
