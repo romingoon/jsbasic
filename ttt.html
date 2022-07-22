@@ -32,17 +32,17 @@
       korWeeks : ['일', '월', '화', '수', '목', '금', '토'],
       mathWeeks : ['일', '월', '화', '수', '목', '금', '토']
     };
-    const getNextWeek = ((btn) => {
+    const getNextWeek =( (btn) => {
 
-      return (btn) => {
+      return () => {
         let widx = -1;
         if (btn === 'btn1') {
-          widx += 1; // side-effect!
-          if (widx >= WEEKS.korWeeks.length) widx = 0;
+           // side-effect!
+          if ((widx += 1) >= WEEKS.korWeeks.length) widx = 0;
           return WEEKS.korWeeks[widx];
         } else{
-          widx += 1; // side-effect!
-          if (widx >= WEEKS.mathWeeks.length) widx = 0;
+          //widx += 1; // side-effect!
+          if ((widx += 1) >= WEEKS.mathWeeks.length) widx = 0;
           return WEEKS.mathWeeks[widx];
         }
       };
@@ -61,8 +61,6 @@
         const btn = this.attributes.id.value;
         console.log(btn);
         $sp1.innerText = getNextWeek(btn);
-
-
       });
       $btn2.addEventListener('click', (event) => {
         console.log('Click22!!!!!', this, event.target); // window
