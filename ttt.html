@@ -32,16 +32,20 @@
       korWeeks : ['일', '월', '화', '수', '목', '금', '토'],
       mathWeeks : ['일', '월', '화', '수', '목', '금', '토']
     };
-    const getNextWeek = ((btn) => {
+    
 
+    const getNextWeek = ((btn) => {
+      
+      let widx = -1;
+        
       return (btn) => {
-        let widx = -1;
+      
         if (btn === 'btn1') {
-          widx += 1; // side-effect!
+          widx+=1; // side-effect!
           if (widx >= WEEKS.korWeeks.length) widx = 0;
           return WEEKS.korWeeks[widx];
         } else{
-          widx += 1; // side-effect!
+          widx+=1; // side-effect!
           if (widx >= WEEKS.mathWeeks.length) widx = 0;
           return WEEKS.mathWeeks[widx];
         }
@@ -52,26 +56,23 @@
     window.addEventListener('load', () => {
 
       const $btn1 = document.getElementById('btn1');
-      const $sp1 = document.getElementById('sp1');
       const $btn2 = document.getElementById('btn2');
+      
+      const $sp1 = document.getElementById('sp1');
       const $sp2 = document.getElementById('sp2');
-
+      
       $btn1.addEventListener('click', function (event) {
         console.log('Click11!!!!!', this, event.target); // button
-        const btn = this.attributes.id.value;
+        const btn = event.target.attributes.id.value;
         console.log(btn);
         $sp1.innerText = getNextWeek(btn);
-
-
       });
       $btn2.addEventListener('click', (event) => {
         console.log('Click22!!!!!', this, event.target); // window
-
         const btn = event.target.attributes.id.value;
         console.log(btn);
         $sp2.innerText = getNextWeek(btn);
       });
-
     });
   </script>
 </body>
