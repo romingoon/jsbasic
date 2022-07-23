@@ -18,3 +18,9 @@ const intl = setInterval(() => {
 
 // 성호님 solution 
 
+/* 순수 함수
+  - 같은 input, 같은 output
+  - side-effect (부수 효과) X   
+*/
+
+
