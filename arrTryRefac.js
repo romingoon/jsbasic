@@ -1,20 +1,17 @@
 const range = (start, end, step) => {
-  // if ((end !== start && step > 0) || ((end - start) * step < 0))
 
   if ((start > end && step > 0) || (start < end && step < 0)) return [];
-
-  const arr = [];
+  // ?? 널 병합연산자 쓸 경우 할당연산자 붙는게 원칙, 
+  // 할당 연산자 쓰지 않을 경우 어떤 것이 변경되는지 헷깔림.
   end ?? ((end = start >= 0 ? start : -1), (start = start <= 0 ? start : 1));
   step ?? (step = start === end ? 0 : (step = start > end ? -1 : 1));
-  let i = start;
 
-  if (step === 0) arr.push(i);
-  else {
-    for (; step > 0 ? i <= end : i >= end; i += step) {
-      arr.push(i);
-    }
+  const arr = [];
+  if (step === 0) return [start];// 
+
+  for (let i = start; step > 0 ? i <= end : i >= end; i += step) {
+    arr.push(i);
   }
-
   return arr;
 };
 
@@ -22,6 +19,8 @@ const assertRange = (start, end, step) => {
   const myRange = range(start, end, step);
   console.log(`range(${start}, ${end}, ${step}) ==> ${myRange}`);
 };
+
+
 console.time("total");
 // console.time('1st');
 
@@ -31,7 +30,7 @@ assertRange(1, 10);
 assertRange(10, 1);
 assertRange(10, 1, -2);
 assertRange(5);
-// // assertRange(100);
+assertRange(100);
 assertRange(-5);
 assertRange(5, 5);
 assertRange(5, 5, 0);
