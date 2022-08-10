@@ -15,6 +15,7 @@
 
 // console.log(id1 == id2); // fales
 // console.log(id1 === id2); //false
+
 //심볼은 유일성이 보장되는 자료형, 설명이 동일한 심볼 여러개 만들어도 각 심볼 값은 다름
 // 심볼에 붙이는 설명(심볼 이름)은 어떤 것에도 영향을 주지 않는 이름표 역할만 함
 // console.log(id1.description === id2.description); // true
@@ -110,10 +111,3 @@ console.log(Reflect.ownKeys(obj));
 //Symbol의 초기 개발 목적은 private 속성 지원이었다고 한다.
 //하지만 Symbol을 알 수 있는 방법들(예: Object.getOwnPropertySymbols, Reflect.ownKeys)이
 //존재하여 사실상 원래 취지에는 맞지 않게 되었다.
-
-console.log(Symbol.iterator);
-
-const arr = [1, 2, 3, 4, 5];
-const iter = arr[Symbol.iterator];
-
-iter.next();

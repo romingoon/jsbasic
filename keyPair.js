@@ -4,9 +4,9 @@ const keyPair = (arr, target) => {
     const pair1 = target - num;
     const pair2 = target - pair1;
     if (pair1 < pair2 && arr.includes(pair1)) {
-      const idx1 = arr.indexOf(pair1);
-      const idx2 = arr.indexOf(pair2);
-      ret.push(idx1, idx2);
+      const pairIdx1 = arr.indexOf(pair1);
+      const pairIdx2 = arr.indexOf(pair2);
+      ret.push(pairIdx1, pairIdx2);
     }
   }
   return ret;
