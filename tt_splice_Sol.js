@@ -1,25 +1,6 @@
 const arrX = [1, 2, 3, 4, 5];
-
 const splice = (arr, idx, delCnt = arr.length - 1, ...items) => {
-  idx = idx ? (idx < 0 ? arr.length + idx : idx) : 0;
-
-  const end = Math.min(idx + delCnt, arr.length);
-
-  for (let i = idx; i < arr.length; i++) {
-    arr[i] = arr[i + delCnt];
-  }
-  arr.length -= end - idx;
-
-  if (items.length) {
-    for (let i = arr.length - 1; i >= idx; i--) {
-      arr[i + items.length] = arr[i];
-    }
-    for (let i = 0; i < items.length; i++) {
-      arr[idx + i] = items[i];
-    }
-  }
-
-  return arr;
+  return [...arr.slice(0, idx), ...items, ...arr.slice(idx + delCnt)];
 };
 
 const a1 = splice(arrX, 1, 3); // a1 = [1, 5]
