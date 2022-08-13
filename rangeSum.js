@@ -25,6 +25,8 @@ const rangeSum = (start, end) => {
   range = arr.slice(start, end + 1);
   return range.reduce((sum, curr) => (sum += curr));
 };
+
+console.time('total');
 console.log(rangeSum(2, 5)); // 19
 console.log(rangeSum(3, 5)); // 15
 console.log(rangeSum(1, 4)); // 14
@@ -32,3 +34,4 @@ console.log(rangeSum(5, 8)); // 30
 console.log(rangeSum(6, 8)); // 22
 console.log(rangeSum(2, 8)); // 41
 console.log(rangeSum(4, 4)); // 5
+console.timeEnd('total');
