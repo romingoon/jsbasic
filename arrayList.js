@@ -98,49 +98,115 @@ class Queue extends Collection {
 }
 
 class ArrayList extends Collection {
-  arrayToList([...arr], i = 0) {
-    return i < arr.length
-      ? { value: arr[i], rest: this.arrayToList(arr, i + 1) }
-      : null;
+  static listToArray(lst) {
+    // console.log(lst);
+    const arr = [];
+    let node = lst;
+    while (node?.value) {
+      arr.push(node.value);
+      node = node.rest;
+    }
+    return arr;
   }
 
-  listToArray({ ...list }, arr = []) {
-    arr.push(list.value);
-    return list.rest != null ? this.listToArray(list.rest, arr) : arr;
+  constructor(lstOrArr) {
+    super(Array.isArray(lstOrArr) ? lstOrArr : ArrayList.listToArray(lstOrArr));
   }
+
+  add(val) {
+    this.push(val);
+  }
+  get(index) {
+    return this.arr[index];
+  }
+
+  removeByIndex(index) {
+    this._splice(index, 1);
+  }
+  remove(value) {
+    this.removeByIndex(super.indexOf(value))
+  }
+
+  set(index, value) {
+    this._splice(index, 0, value);
+  }
+  size() {
+    return this.length;
+  }
+  get peek() {
+    if (this.constructor.name === "Stack") return this.arr[this.length - 1];
+    return this.arr[0];
+  }
+
+  get isEmpty() {
+    return !this.arr.length;
+  }
+
+  get length() {
+    return this.arr.length;
+  }
+  contains(value) {
+    return this.arr.include(value);
+  }
+  _splice(...args) {
+    return this.arr.splice(...args);
+  }
+
 }
 
-const stack = new Stack([1, 2]); // or new Stack([1,2]); // (1,2)
-stack.push(3); // 추가하기
-console.log("spop>>>", stack.pop()); // 마지막에 추가된 하나 꺼내기
-stack.push(3);
-const queue = new Queue([11, 22]);
-queue.enqueue(33); // 추가하기
-console.log("deq>>", queue.dequeue()); // 추가한지 가장 오래된 - 먼저 들어간 - 하나 꺼내기
-queue.enqueue(44);
-stack.print();
-queue.print();
-
-console.log("===============================");
-console.log([...stack], [...queue]);
-for (const s of stack) console.log(s);
-for (const q of queue) console.log(q);
-
-const itStack = stack[Symbol.iterator]();
-console.log(itStack.next());
-console.log(itStack.next());
-console.log(itStack.next());
-console.log(itStack.next());
-
-const itQueue = queue.iterator();
-console.log(itQueue.next());
-console.log(itQueue.next());
-console.log(itQueue.next());
-console.log(itQueue.next());
-
 const alist = new ArrayList({ value: 1, rest: { value: 2 } }); // new ArrayList([1,2]);
+alist.add(3);
+alist.print();
+
+alist.remove(2); // { value: 1, rest: { value: 3 } }
+alist.print();
+
+// alist.add(22, 1); // { value: 1, rest: { value: 22, rest: { value: 3 } } }
+// alist.add(33, 1);
+// alist.print(); // ArrayList(4) { value: 1, rest: { value: 33, rest: { value: 22, rest: { value: 3 } } } }
+// alist.set(1, 300); // { value: 1, rest: { value: 300, rest: { value: 22, rest: { value: 3 } } } }
+// alist.get(2);
+// alist.size(); // 22, 4
+// alist.indexOf(300); // 1
+// alist.contains(300);
+// alist.contains(301); // true, false
+// alist.isEmpty;
+// alist.peek; // false, 3
+// alist.toArray(); // [1, 300, 22, 3]
+// console.log(alist.iterator().next()); // { value: 1, done: false }
+// alist.clear(); // all clear
+
+return;
+// const stack = new Stack([1, 2]); // or new Stack([1,2]); // (1,2)
+// stack.push(3); // 추가하기
+// console.log("spop>>>", stack.pop()); // 마지막에 추가된 하나 꺼내기
+// stack.push(3);
+// const queue = new Queue([11, 22]);
+// queue.enqueue(33); // 추가하기
+// console.log("deq>>", queue.dequeue()); // 추가한지 가장 오래된 - 먼저 들어간 - 하나 꺼내기
+// queue.enqueue(44);
+// stack.print();
+// queue.print();
+
+// console.log("===============================");
+// console.log([...stack], [...queue]);
+// for (const s of stack) console.log(s);
+// for (const q of queue) console.log(q);
+
+// const itStack = stack[Symbol.iterator]();
+// console.log(itStack.next());
+// console.log(itStack.next());
+// console.log(itStack.next());
+// console.log(itStack.next());
+
+// const itQueue = queue.iterator();
+// console.log(itQueue.next());
+// console.log(itQueue.next());
+// console.log(itQueue.next());
+// console.log(itQueue.next());
+
 // console.log(alist.listToArray({ value: 1, rest: { value: 2 } }));
-console.log(alist.arrayToList([1, 2]));
+// console.log(alist.arrayToList([1, 2]));
 console.log(alist.add(3));
 // alist.remove(2); // { value: 1, rest: { value: 3 } }
 // alist.add(22, 1); // { value: 1, rest: { value: 22, rest: { value: 3 } } }
@@ -155,5 +221,5 @@ console.log(alist.add(3));
 // alist.isEmpty;
 // alist.peek; // false, 3
 // alist.toArray(); // [1, 300, 22, 3]
-console.log(alist.iterator().next()); // { value: 1, done: false }
+// console.log(alist.iterator().next()); // { value: 1, done: false }
 // alist.clear(); // all clear
