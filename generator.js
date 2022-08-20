@@ -13,13 +13,13 @@ console.log(it.next('신림'));
 console.log('----------------------------------');
 
 
-function* sum() {
+function* add() {
     const num1 = yield "첫번째 수?";
     const num2 = yield "두번째 수?";
     return num1 + num2;
 }
 
-const it2 = sum();
+const it2 = add();
 console.log(it2.next());
 console.log(it2.next(1));
 console.log(it2.next(2));

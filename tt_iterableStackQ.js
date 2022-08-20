@@ -1,6 +1,6 @@
 
 // // const routes = new Subway('문래', '신림');
-let line2 = [
+const line2 = [
     "시청",
     "충정로",
     "아현",
@@ -54,36 +54,53 @@ let line2 = [
 // console.log(it1.next());
 // console.log(it1.next());
 // console.log(it1.next());
-// // console.log([...it1]);
-
-let range = { // 객체 생성
-    from: 1,
-    to: 5
-};
 
 
-// 1. for..of 최초 호출 시, Symbol.iterator가 호출됩니다.
-range[Symbol.iterator] = function () {
+class Subway {
+    constructor(start, end) {
+        this.start = start;
+        this.end = end;
+    }
 
-    // Symbol.iterator는 이터레이터 객체를 반환합니다.
-    // 2. 이후 for..of는 반환된 이터레이터 객체만을 대상으로 동작하는데, 이때 다음 값도 정해집니다.
-    return {
-        current: this.from,
-        last: this.to,
+    // [Symbol.iterator]() {
+    //     let idx = line2.indexOf(this.start) - 1;
+    //     let done = false;
+    //     return {
+    //         next: () => {
+    //             idx = idx === line2.length - 1 ? 0 : idx + 1;
+    //             done = done || line2[idx - 1] === this.end;
+    //             return { value: done ? undefined : line2[idx], done }
+    //         }
+    //     }
+    // }
+    *[Symbol.iterator]() {
 
-        // 3. for..of 반복문에 의해 반복마다 next()가 호출됩니다.
-        next() {
-            // 4. next()는 값을 객체 {done:.., value :...}형태로 반환해야 합니다.
-            if (this.current <= this.last) {
-                return { done: false, value: this.current++ }; // 순회 진행
-            } else {
-                return { done: true }; // 순회 종료
-            }
+        let idx = line2.indexOf(this.start) - 1;
+        let done = false;
+
+        while (!done) {
+            idx = idx === line2.length - 1 ? 0 : idx + 1;
+            done = done || line2[idx - 1] === this.end;
+            yield line2[idx];
         }
-    };
-};
-
-// 이제 의도한 대로 동작합니다!
-for (let num of range) {
-    console.log(num); // 1, 2, 3, 4, 5
+    }
 }
+const route = new Subway('문래', '교대');
+// const it = route[Symbol.iterator]();
+console.log(it.next());
+console.log(it.next('문래'));
+console.log(it.next('교대'));
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+
+// const routes2 = new Subway('뚝섬', '잠실');
+// const it2 = routes2[Symbol.iterator]();
+
+// console.log([...routes2]);
+// while (true) {
+//     const x = it2.next();
+//     console.log(x);
+//     if (x.done) break;
+// }
