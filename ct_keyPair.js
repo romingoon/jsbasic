@@ -14,7 +14,7 @@ const keyPair = (arr, n) => {
         if (diffIdx[diff])
             return [i, diffIdx[diff]];
         else
-            return diffIdx[diff] = i;
+            diffIdx[diff] = i;
     }
 };
 

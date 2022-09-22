@@ -15,21 +15,21 @@ const diff = (arrX, arrY) => {
     return new Set(arrX.filter(x => !arrY.includes(x)));
 }
 
-const superSet = (nums) => {
-    const result = new Set();
+// const superSet = (nums) => {
+//     const result = new Set();
 
-    const dfs = (start = 0, arr = []) => {
-        result.add(arr);
+//     const dfs = (start = 0, arr = []) => {
+//         result.add(arr);
 
-        for (let i = start; i < nums.length; i += 1) {
-            dfs(i + 1, [...arr, nums[i]]);
-        }
-    };
-    dfs();
+//         for (let i = start; i < nums.length; i += 1) {
+//             dfs(i + 1, [...arr, nums[i]]);
+//         }
+//     };
+//     dfs();
 
-    return result;
+//     return result;
 
-};
+// };
 console.log(union(A, B)); // [1, 2, 3, 4, 5, 22, 44]
 console.log(union(A, C)); // [1, 2, 3, 4, 5, 11, 222, 555]
 // return;
