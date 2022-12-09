@@ -4,7 +4,7 @@
   "description": "js 기본기",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
     "@babel/core": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
     "babel-loader": "^8.2.5",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -33,6 +35,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
+    "mochawesome": "^7.1.3",
     "prettier": "^2.7.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
@@ -62,6 +65,7 @@
     "ci-info": "^2.0.0",
     "cli-boxes": "^2.2.1",
     "clone-response": "^1.0.2",
+    "co": "^4.6.0",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
     "concat-map": "^0.0.1",
@@ -148,6 +152,7 @@
     "moment-timezone": "^0.5.37",
     "ms": "^2.1.2",
     "natural-compare": "^1.4.0",
+    "node-fetch": "^3.2.10",
     "nodemon": "^2.0.19",
     "nopt": "^1.0.10",
     "normalize-path": "^3.0.0",
